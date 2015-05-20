@@ -22,7 +22,8 @@ module Clock(
     input Clk100M,
     input reset,
     input levelChng,
-    input prelimPeriod
+    input prelimPeriod,
+    input gamePeriod,
     input answerPeriod,
     input postPeriod,
     input [4:0] level,
@@ -52,14 +53,15 @@ always @(posedge levelChng) begin
   counterSymGen = 0;
 end
 
-// reset 1hz counter when changing period 
+// reset 1hz counter when changing period
 always @(posedge answerPeriod or posedge prelimPeriod or posedge postPeriod) begin
   counter1Hz = 0;
 end
 
 always @(posedge Clk100M) begin
 	// ClkSymGen controls the speed of symbol movement/generation
-  if((counterSymGen == SymGenMax - 1) && (!answerPeriod) && (!prelimPeriod) && (!postPeriod)) begin
+  // This will only be generated during the game period
+  if((counterSymGen == SymGenMax - 1) && (gamePeriod)) begin
 		counterSymGen=0;
 		ClkSymGen=1;
 	end
