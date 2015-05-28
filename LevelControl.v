@@ -12,8 +12,9 @@ module LevelControl(
     output reg loss
     );
 
+integer levelDuration;
 initial begin
-    integer levelDuration=0;
+    levelDuration=0;
     countDownTime = 0;
     levelChng=0;
     level = 0;
@@ -34,7 +35,7 @@ always @(posedge reset) begin
     gamePeriod = 0;
 end
 
-always @(posedge Clk1hz) begin
+always @(posedge Clk1Hz) begin
   // During the prelim period, we will display a countdown timer before the level starts
   if (levelDuration < 3) begin
     prelimPeriod = 1;
@@ -66,7 +67,7 @@ always @(posedge Clk1hz) begin
     answerPeriod = 0;
     gamePeriod = 0;
     levelChng = 0;
-    perlimPeriod = 0;
+    prelimPeriod = 0;
   end
   // After 5 seconds of post level period, determine level outcome
   else if (levelDuration == 31) begin
@@ -90,9 +91,11 @@ always @(posedge Clk1hz) begin
   // Reset the level duration if the user won, freeze it if user lost, o.w. increment it
   if (levelChng) begin
     levelDuration = 0;
+	end
   else if (loss) begin
     // do nothing
-  else
+	end
+  else begin
     levelDuration = levelDuration + 1;
   end
 end

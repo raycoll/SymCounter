@@ -4,7 +4,7 @@ module BtnInput(
    input clk,
 	 input btnU, // player count up
    input btnD, // player count down
-   input btnR, // reset game
+   input btnS, // reset game
    output reg up,
    output reg down,
    output reg reset
@@ -24,11 +24,11 @@ module BtnInput(
 			down <= 0;
 	end
 
-  always @(posedge clk or posedge btnR) begin
-    if (btnR)
+  always @(posedge clk or posedge btnS) begin
+    if (btnS)
       reset <= 1;
     else
-      rest <= 0;
+      reset <= 0;
   end
 
 endmodule

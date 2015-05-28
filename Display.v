@@ -14,7 +14,7 @@ module Display(
   input [6:0] gameCount,
   input [6:0] countDifference, // aka SCORE
   input [3:0] countDownTime,
-  inpur [4:0] level,
+  input [4:0] level,
   input [7:0] generatedSymbol,
 	output reg [7:0] seg,
   output reg [3:0] an
@@ -22,26 +22,24 @@ module Display(
 `include "IntToSeg.v"
 
 // Registers that hold each digit of the display
-register [7:0] dig0;
-register [7:0] dig1;
-register [7:0] dig2;
-register [7:0] dig3;
+reg [7:0] dig0;
+reg [7:0] dig1;
+reg [7:0] dig2;
+reg [7:0] dig3;
 
-register [1:0] dispCount;
+reg [1:0] dispCount;
 integer postCount;
-register [3:0] tempTens;
-register [3:0] tempOnes;
+reg [3:0] tempTens;
+reg [3:0] tempOnes;
 
 initial begin
- count=2'b00;
+ dispCount=2'b00;
  dig0=8'b11000000;
  dig1=8'b11111111;
  dig2=8'b11111111;
  dig3=8'b11111111;
  an = 4'b1111;
  postCount = 0;
- userCountTens = 0;
- userCountOnes = 0;
 end
 
 
@@ -100,7 +98,7 @@ always @(posedge Clk1Hz or posedge postPeriod) begin
           dig0=8'b10010010; // S
           dig1=8'b11111111; // blank
           dig2=intToSeg(gameCount / 10); // game count tens
-          dig3=intToSEg(gameCount % 10); // game count ones
+          dig3=intToSeg(gameCount % 10); // game count ones
         end
     2: begin // Difference
           dig0=8'b1010001; // d
@@ -144,7 +142,7 @@ always @(posedge ClkDisp) begin
   if(dispCount==2'b00) begin
     an=4'b0111;
     dispCount = dispCount + 1;
-  ends
+  end
   else if(dispCount==2'b01) begin
     an=4'b1011;
     dispCount = dispCount + 1;
