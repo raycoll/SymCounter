@@ -74,7 +74,7 @@ wire [7:0] postSeg2;
 wire [7:0] postSeg3;
 wire levelComplete;
 PostPeriod pp(
-          .Clk100M(Clk100M,
+          .Clk100M(Clk100M),
           .Clk1Hz(Clk1Hz),
           .postSig(postSig),
           .levelComplete(levelComplete),
@@ -121,7 +121,7 @@ Judge j(
 wire newLevel;
 wire [3:0] curLevel;
 wire [31:0] symGenMax;
-LevelContol lc(
+LevelControl lc(
           .Clk100M(Clk100M),
           .incLevel(incLevel),
           .prelimSig(prelimSig),
@@ -134,7 +134,7 @@ LevelContol lc(
 wire pre, game, answer, post;
 CurPeriod cp(
           .Clk100M(Clk100M),
-          .prelimSig(.prelimSig),
+          .prelimSig(prelimSig),
           .gameSig(gameSig),
           .answerSig(answerSig),
           .postSig(postSig),

@@ -28,3 +28,5 @@ always @(posedge Clk100M) begin
     count <= count + 1;
   end
 end
+
+endmodule

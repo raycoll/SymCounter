@@ -46,3 +46,4 @@ always @(posedge Clk1Hz) begin
   end
 end
 
+endmodule

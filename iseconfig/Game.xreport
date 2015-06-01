@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2015-05-31T17:44:52</DateModified>
+  <DateModified>2015-06-01T14:44:51</DateModified>
   <ModuleName>Game</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
-  <SavedFilePath>/home/steven/workspace/SymCounter/iseconfig/Game.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>/home/steven/workspace/SymCounter/</ImplementationReportsDirectory>
+  <SavedFilePath>C:/Users/152/SymCounter/iseconfig/Game.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>C:/Users/152/SymCounter\</ImplementationReportsDirectory>
   <DateInitialized>2015-05-13T14:24:15</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

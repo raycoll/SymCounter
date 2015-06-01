@@ -52,14 +52,14 @@ BtnInput b(.clk(clk),
 // Clock generation module
 wire Clk1Hz, ClkDisp;
 Clock c(.Clk100Mhz(Clk100Mhz),
-            .Clk1Hz(.Clk1Hz),
-            .ClkDisp(.ClkDisp));
+            .Clk1Hz(Clk1Hz),
+            .ClkDisp(ClkDisp));
 
 
 // Blips the user buttons according to the 100Mhz clk
 wire upB, downB;
 BtnBlip(
-        .Clk100M(.Clk100Mhz),
+        .Clk100M(Clk100Mhz),
         .up(up),
         .down(down),
         .upB(upB),
@@ -81,14 +81,5 @@ GamePlay gp( .Clk100Mhz(Clk100Mhz),
                       .seg2(seg2),
                       .seg3(seg3));
 
-
-// general 7 segment display module
-Display d( .ClkDisp(.ClkDisp),
-                .seg0(seg0),
-                .seg1(seg1),
-                .seg2(seg2),
-                .seg3(seg3),
-                .segOut(seg),
-                .anOut(an));
 
 endmodule

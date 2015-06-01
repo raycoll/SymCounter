@@ -1,7 +1,7 @@
 ///////////////////////////////////
 // Outputs a signal to 
 ///////////////////////////////////
-module CurPeriod cp(
+module CurPeriod(
           input Clk100M,
           input prelimSig,
           input gameSig,
