@@ -3,8 +3,10 @@ module CountDownTimer(
               input Clk100M, 
               input Clk1Hz,
               input start,
+              input [3:0] curLevel,
               output reg doneCounting,
-              output reg [7:0] seg 
+              output reg seg1 [7:0],
+              output reg seg2 [7:0] 
 );
 
 integer curCount;
@@ -14,7 +16,7 @@ reg finished;
 initial begin
   doneCounting = 0;
   counting = 0;
-  curCount = 5;
+  curCount = 6;
   finished = 0;
 end
 
@@ -34,14 +36,19 @@ always @(posedge Clk100M) begin
 end
 
 always @(posedge Clk1Hz) begin
-  if (counting && curCount > 0) begin 
-    seg <= IntToSeg(curCount);
+  if (counting && curCount == 6) begin // display level
+    seg0 <= 8'b11000111; // L
+    seg1 <= IntToSeg(curLevel); // levelnum
+    count <= count - 1;
+  end
+  if (counting && curCount > 0) begin // normal countdown
+    seg0 <= IntToSeg(curCount);
     curCount <= curCount - 1;
     finished <= 0;
   end
   else if (counting && curCount == 0) begin
     finished <= 1;
-    curCount <= 5;
+    curCount <= 6;
   end
   else begin
     finished <= 0;

@@ -1,7 +1,8 @@
 module PrelimPeriod(
           input Clk1Hz,
           input prelimSig,
-          output reg [0:0] gameSig,
+          input [3:0] curLevel,
+          output reg gameSig,
           output reg [7:0] prelimSeg0,
           output reg [7:0] prelimSeg1,
           output reg [7:0] prelimSeg2,
@@ -26,6 +27,7 @@ end
 
 CountDownTimer t(.Clk100M(Clk100M),
                  .Clk1Hz(Clk1Hz),
+                 .curLevel(curLevel),
                  .start(startCountDown),
                  .doneCounting(doneCounting),
                  .seg(prelimSeg0));
