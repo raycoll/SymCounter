@@ -1,88 +1,80 @@
 //`include "intToSeg.v"
 module DisplayCntrl(
-  input Clk1Hz,
-  input ClkGen,
-	input ClkDisp,
-  input prelimPeriod,
-  input gamePeriod,
-  input answerPeriod,
-  input postPeriod,
-  input lose,
-  input [6:0] userCount,
-  input [6:0] gameCount,
-  input [6:0] countDifference, // aka SCORE
-  input [3:0] countDownTime,
-  input [4:0] level,
-  input [7:0] generatedSymbol,
-	output reg [7:0] seg,
-  output reg [3:0] an
+                input Clk100M,
+                input lose,
+                input pre,
+                input game,
+                input answer,
+                input post,
+                input [7:0] prelimSeg0,
+                input [7:0] prelimSeg1,
+                input [7:0] prelimSeg2,
+                input [7:0] prelimSeg3,
+                input [7:0] gameSeg0,
+                input [7:0] gameSeg1,
+                input [7:0] gameSeg2,
+                input [7:0] gameSeg3,
+                input [7:0] answerSeg0,
+                input [7:0] answerSeg1,
+                input [7:0] answerSeg2,
+                input [7:0] answerSeg3,
+                input [7:0] postSeg0,
+                input [7:0] postSeg1,
+                input [7:0] postSeg2,
+                input [7:0] postSeg3,
+                output reg [7:0] segOut0,
+                output reg [7:0] segOut1,
+                output reg [7:0] segOut2,
+                output reg [7:0] segOut3
 );
 
-
-// Registers that hold each digit of the display
-reg [7:0] dig0;
-reg [7:0] dig1;
-reg [7:0] dig2;
-reg [7:0] dig3;
-
-reg [1:0] dispCount;
-integer postCount;
-reg [3:0] tempTens;
-reg [3:0] tempOnes;
-
 initial begin
- dispCount=2'b00;
- dig0=8'b11000000;
- dig1=8'b11111111;
- dig2=8'b11111111;
- dig3=8'b11111111;
- an = 4'b1111;
- postCount = 0;
+ segOut0 = 8'b11111111;
+ segOut1 = 8'b11111111;
+ segOut2 = 8'b11111111;
+ segOut3 = 8'b11111111;
 end
 
-
-// Clear digits when game mode starts
-always @(posedge gamePeriod) begin
-  dig0=8'b11111111;
-  dig1=8'b11111111;
-  dig2=8'b11111111;
-  dig3=8'b11111111;
-end
-
-// Move symbols during normal game mode
-// TODO: does this work?
-always @(posedge ClkGen) begin
-  if (gamePeriod) begin
-    dig3 <= dig2;
-    dig2 <= dig1;
-    dig1 <= dig0;
-    dig0 <= generatedSymbol;
+always @(posedge Clk100M) begin
+  if (lose) begin
+    segOut0 <= 8'b11000111; // L
+    segOut1 <= 8'b11000000; // O
+    segOut2 <= 8'b10010010; // S 
+    segOut3 <= 8'b10000110; // E
+  end
+  else if (pre) begin
+    segOut0 <= prelimSeg0;
+    segOut1 <= prelimSeg1;
+    segOut2 <= prelimSeg2;
+    segOut3 <= prelimSeg3;
+  end
+  else if (game) begin
+    segOut0 <= gameSeg0;
+    segOut1 <= gameSeg1;
+    segOut2 <= gameSeg2;
+    segOut3 <= gameSeg3;  
+  end 
+  else if (answer) begin
+    segOut0 <= answerSeg0;
+    segOut1 <= answerSeg1;
+    segOut2 <= answerSeg2;
+    segOut3 <= answerSeg3;
+  end 
+  else if (post) begin
+    segOut0 <= postSeg0;
+    segOut1 <= postSeg1;
+    segOut2 <= postSeg2;
+    segOut3 <= postSeg3;
+  end
+  else begin
+    segOut0 <= 8'b00000000;
+    segOut1 <= 8'b00000000;
+    segOut2 <= 8'b00000000;
+    segOut3 <= 8'b00000000;
   end
 end
 
-// Display countdown timer during prelim mode
-always @(posedge Clk1Hz) begin
-  if (prelimPeriod) begin
-    dig0=8'b11000111; // make this an "L"
-    dig2=8'b11111111;
-    dig3=8'b11111111;
-    dig1 = intToSeg(countDownTime);
-  end
-end
-
-// Display all zeroes during answer period
-always @(posedge answerPeriod) begin
-  dig0=8'b11000111;
-  dig1=8'b11000111;
-  dig2=8'b11000111;
-  dig3=8'b11000111;
-end
-
-// Initialize count for start of post level period
-always @(posedge postPeriod) begin
-  postCount = 0;
-end
-
+/*
 // Display user count, expected count, difference during post period
 always @(posedge Clk1Hz or posedge postPeriod) begin
   case(postCount)
@@ -133,35 +125,6 @@ always @(posedge Clk1Hz or posedge postPeriod) begin
   else begin
     postCount = postCount + 1;
   end
-end
-
-// Fast clock sensitive block used to display the currect contents of the dig registers
-always @(posedge ClkDisp) begin
-  if(dispCount==2'b00) begin
-    an=4'b0111;
-    dispCount = dispCount + 1;
-  end
-  else if(dispCount==2'b01) begin
-    an=4'b1011;
-    dispCount = dispCount + 1;
-  end
-  else if(dispCount==2'b10) begin
-    an=4'b1101;
-    dispCount = dispCount + 1;
-  end
-  else if(dispCount==2'b11) begin
-    an=4'b1110;
-    dispCount = 2'b00;
-  end
-
-  // Display current digit
-	case (dispCount)
-    0: seg <= dig0;
-    1: seg <= dig1;
-    2: seg <= dig2;
-    3: seg <= dig3;
-    default seg <= 8'b11111111;
-	endcase
-end
+end */
 
 endmodule
