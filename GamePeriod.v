@@ -3,9 +3,9 @@ module GamePeriod(
           input Clk1Hz,
           input gameSig,
           input [31:0] symGenMax,
-          output startGen,
-          output stopGen,
-          output answerSig,
+          output reg [0:0] startGen,
+          output reg [0:0] stopGen,
+          output reg [0:0] answerSig,
           output reg [7:0] numSpecial,
           output reg [7:0] gameSeg0,
           output reg [7:0] gameSeg1,
@@ -81,7 +81,7 @@ always @(posedge Clk1Hz) begin
     gameTime <= gameTime + 1;
     periodFinished <= 0;
   end
-  else if (runtiming && gameTime == 15) begin
+  else if (runTiming && gameTime == 15) begin
     periodFinished <= 1;
     gameTime <= 0;
   end

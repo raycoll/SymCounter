@@ -1,8 +1,10 @@
+`include "intToSeg.v"
 module CountDownTimer(
+              input Clk100M, 
               input Clk1Hz,
               input start,
               output reg doneCounting,
-              output reg seg [7:0] 
+              output reg [7:0] seg 
 );
 
 integer curCount;

@@ -1,4 +1,4 @@
-
+//`include "intToSeg.v"
 module DisplayCntrl(
   input Clk1Hz,
   input ClkGen,
@@ -17,7 +17,7 @@ module DisplayCntrl(
 	output reg [7:0] seg,
   output reg [3:0] an
 );
-`include "IntToSeg.v"
+
 
 // Registers that hold each digit of the display
 reg [7:0] dig0;
@@ -165,4 +165,3 @@ always @(posedge ClkDisp) begin
 end
 
 endmodule
->>>>>>> Adds symgen logic

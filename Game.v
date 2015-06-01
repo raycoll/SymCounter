@@ -25,19 +25,20 @@ module Game(
   input btnD, //down
   
   //These three are for the block memory generator
-  input clka,
+ /* input clka,
   input [1:0] addra,
   output [0:0] douta,
-  
+ */
+ 
   output wire [7:0] seg,
   output wire [3:0] an
  );
  
- Rand block_mem_gen ( //instantiating ROM in top level module
+/* Rand block_mem_gen ( //instantiating ROM in top level module
   .clka(clka), // input clka
   .addra(addra), // input [1 : 0] addra
   .douta(douta) // output [0 : 0] douta
-);
+);*/
 
 // Creates signals from fpga button inputs
 wire up, down, reset;
@@ -48,7 +49,14 @@ BtnInput b(.clk(clk),
                 .up(up), 
                 .down(down), 
                 .reset(reset));
-
+               
+/*RandomNum rn(
+  .clk(clk),
+  .ranrst(ranrst),
+  .randomNum(randomNum)
+ );
+*/
+               
 // Clock generation module
 wire Clk1Hz, ClkDisp;
 Clock c(.Clk100Mhz(Clk100Mhz),

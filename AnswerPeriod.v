@@ -1,8 +1,9 @@
 module AnswerPeriod(
+          input Clk100M,
           input Clk1Hz,
           input answerSig,
-          output postSig,
-          output stopCount,
+          output reg postSig,
+          output reg stopCount,
           output reg [7:0] answerSeg0,
           output reg [7:0] answerSeg1,
           output reg [7:0] answerSeg2,
@@ -11,7 +12,8 @@ module AnswerPeriod(
 
 // Current game time in seconds
 integer answerTime;
-reg periodFinished; 
+reg periodFinished;
+reg runTiming; 
 
 initial begin
   answerTime = 0;

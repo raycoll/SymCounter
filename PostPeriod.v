@@ -11,16 +11,17 @@ module PostPeriod(
 // Current game time in seconds
 integer postTime;
 reg periodFinished; 
+reg runTiming;
 
 initial begin
+  runTiming=0;
   postTime = 0;
   periodFinished = 0;
-  postSig = 0;
-  stopCount = 0;
-  answerSeg0 = 8'b00000000;
-  answerSeg1 = 8'b11111111;
-  answerSeg2 = 8'b11111111;
-  answerSeg3 = 8'b00000000;
+  //stopCount = 0;
+  postSeg0 = 8'b00000000;
+  postSeg1 = 8'b11111111;
+  postSeg2 = 8'b11111111;
+  postSeg3 = 8'b00000000;
 end
 
 always @(posedge Clk100M) begin

@@ -31,9 +31,9 @@ module RandomNum(
  
  always @(posedge clk or posedge reset) begin
   if(reset)
-    randomNum=4'b0000
+    randomNum=4'b0000;
   else
-    randomNum={randomNum[3:1], randBit}  //concat first three bits of randomNum to the random bit
+    randomNum={randomNum[3:1], randBit};  //concat first three bits of randomNum to the random bit
  end
 
 

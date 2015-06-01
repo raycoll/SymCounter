@@ -18,7 +18,7 @@ wire [7:0] prelimSeg1;
 wire [7:0] prelimSeg2;
 wire [7:0] prelimSeg3;
 wire gameSig;
-PrelimPeriod pre(
+PrelimPeriod prelim(
           .Clk100M(Clk100M),
           .Clk1Hz(Clk1Hz),
           .prelimSig(),

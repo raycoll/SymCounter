@@ -4,7 +4,7 @@ module Score(
           input stop,
           input [7:0] userCount,
           input [7:0] magicSymbolCount,
-          output [4:0] difference
+          output reg [4:0] difference
 );
 
 reg counting;

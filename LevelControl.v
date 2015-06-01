@@ -16,7 +16,7 @@ end
 always @(posedge Clk100M) begin
 	if (incLevel) begin
     curLevel <= curLevel + 1;
-    symGenMax <= symGenMax - 50000*level; // increase generation speed as level goes up
+    symGenMax <= symGenMax - 50000*curLevel; // increase generation speed as level goes up
     newLevel <= 1;
   end
   else begin

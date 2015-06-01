@@ -1,7 +1,7 @@
 module PrelimPeriod(
           input Clk1Hz,
           input prelimSig,
-          output gameSig,
+          output reg [0:0] gameSig,
           output reg [7:0] prelimSeg0,
           output reg [7:0] prelimSeg1,
           output reg [7:0] prelimSeg2,
@@ -9,12 +9,13 @@ module PrelimPeriod(
 );
 
 integer periodTime;
+//integer periodEnabled;
 wire doneCounting;
 reg startCountDown;
 
 initial begin
   periodTime = 0;
-  periodEnabled = 0;
+  //periodEnabled = 0;
   startCountDown = 0;
   gameSig = 0;
   prelimSeg1 = 8'b11111111;

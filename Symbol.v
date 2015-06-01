@@ -19,7 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module Symbol(
-	//input reg [3:0] randomNum,
+	input reg [3:0] randomNum,
 	input ClkSymGen,
 	output reg [7:0] generatedSymbol
 );
@@ -29,7 +29,7 @@ randomNum=4'b1111;
 end
 */
 always @(posedge ClkSymGen) begin
-	case (15)
+	case (randomNum)
 		0: generatedSymbol=8'b11101010;
 		1: generatedSymbol=8'b11110001;
 		2: generatedSymbol=8'b11010110;
