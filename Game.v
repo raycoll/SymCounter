@@ -114,6 +114,20 @@ Symbol s(/*.randomNum(randomNum),*/
                .generatedSymbol(generatedSymbol),
                .specialCount(specialCount));
 
+PrelimP pre(.Clk1Hz(Clk1Hz),
+                  .prelimPeriodB(),
+                  .gamePeriod(gamePeriod));
+
+GameP dur(.Clk1Hz(Clk1Hz),
+                  .gamePeriodB(gamePeriodB),
+                  .answerPeriod(answerPeriod));
+
+AnswerP ans(.Clk1Hz(Clk1Hz),
+                    .answerPeriodB(answerPeriodB),
+                    .postPeriod(postPeriod));
+
+PostP post();
+
 // Sets the 7 seg display based on the current game state
 Display d(.Clk1Hz(Clk1Hz), 
                .ClkGen(ClkGen), 
@@ -130,6 +144,15 @@ Display d(.Clk1Hz(Clk1Hz),
                .level(level), 
                .generatedSymbol(generatedSymbol), 
                .seg(seg), 
+               .an(an));
+
+// Generate desired output
+Display d(.ClkDisp(ClkDisp),
+               .seg0_in(),
+               .seg1_in(),
+               .seg2_in(),
+               .seg3_in(),
+               .seg(seg),
                .an(an));
 
 endmodule
