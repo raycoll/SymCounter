@@ -2,18 +2,39 @@
 
 module Clock(
     input Clk100M,
-    input reset,
-    input levelChng,
-    input prelimPeriod,
-    input gamePeriod,
-    input answerPeriod,
-    input postPeriod,
-    input [4:0] level,
-    output reg ClkSymGen,
     output reg ClkDisp,
     output reg Clk1Hz
     );
 
+integer counter1Hz;
+integer counterDisp;
+initial begin
+  counter1Hz = 0;
+  counterDisp = 0;
+end
+
+always @(posedge Clk100M) begin
+  if (counter1Hz == 100000000 - 1) begin
+    counter1Hz <= 0;
+    Clk1Hz <= 1;
+  end
+  else begin
+    Clk1Hz <= 0;
+    counter1Hz <= counter1Hz + 1;
+  end
+  if (counterDisp == 5000000 - 1) begin
+    counterDisp <= 0;
+    ClkDisp <= 1;
+  end 
+  else begin
+    ClkDisp <= 0;
+    counterDisp <= counterDisp + 1;
+  end 
+end
+
+endmodule
+
+/*
 // Counter for clock division
 integer counterSymGen;
 integer SymGenMax;
@@ -94,4 +115,6 @@ always @(posedge Clk100M) begin
 	end
 
 end
+*/
+
 endmodule
