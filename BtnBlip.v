@@ -19,7 +19,46 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module BtnBlip(
-    );
+        input Clk100M,
+        input up,
+        input down,
+        output upB,
+        output downB
+);
 
+reg curUp, curDown;
+initial begin
+  upB = 0;
+  downB = 0;
+  curUp = 0;
+  curDown = 0;
+end
+
+always @(Clk100M) begin
+  if ((up == 1) && (curUp == 0)) begin
+    upB <= 1;
+    curUp <= 1;
+  end
+  else if ((up == 1) && (curUp == 1)) begin
+    upB <= 0;
+  end
+  else begin
+    upB <= 0;
+    curUp <= 0;
+  end
+
+  if ((down == 1) && (curDown == 0)) begin
+    downB <= 1;
+    curDown <= 1;
+  end
+  else if ((down == 1) && (curDown == 1)) begin
+    downB <= 0;
+  end
+  else begin
+    downB <= 0;
+    curDown <= 0;
+  end  
+
+end
 
 endmodule
