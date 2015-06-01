@@ -46,7 +46,7 @@ always @(posedge Clk1Hz) begin
     answerTime <= answerTime + 1;
     periodFinished <= 0;
   end
-  else if (runtiming && answerTime == 5) begin
+  else if (runTiming && answerTime == 5) begin
     periodFinished <= 1;
     answerTime <= 0;
   end
