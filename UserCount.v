@@ -1,5 +1,5 @@
 module UserCount(
-                  input Clk100Mhz,
+                  input Clk100M,
                   input start,
                   input stop,
                   input up,
@@ -14,7 +14,7 @@ initial begin
   counting = 0;
 end
 
-always @(posedge Clk100Mhz) begin
+always @(posedge Clk100M) begin
   if (stop) begin
     counting <= 0;
   end

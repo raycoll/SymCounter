@@ -56,6 +56,15 @@ Clock c(.Clk100Mhz(Clk100Mhz),
             .ClkDisp(.ClkDisp));
 
 
+// Blips the user buttons according to the 100Mhz clk
+wire upB, downB;
+BtnBlip(
+        .Clk100M(.Clk100Mhz),
+        .up(up),
+        .down(down),
+        .upB(upB),
+        .downB(downB));
+
 // Main game play module
 wire [7:0] seg0;
 wire [7:0] seg1;
@@ -64,8 +73,8 @@ wire [7:0] seg3;
 GamePlay gp( .Clk100Mhz(Clk100Mhz),
                       .Clk1Hz(Clk1Hz),
                       .ClkDisp(ClkDisp),
-                      .userUp(up),
-                      .userDown(down),
+                      .userUp(upB),
+                      .userDown(downB),
                       .reset(0),
                       .seg0(seg0),
                       .seg1(seg1),

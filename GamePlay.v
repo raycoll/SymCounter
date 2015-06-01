@@ -1,5 +1,5 @@
 module GamePlay(
-                input Clk100Mhz,
+                input Clk100M,
                 input Clk1Hz,
                 input ClkDisp,
                 input userUp,
@@ -8,10 +8,10 @@ module GamePlay(
                 output reg [7:0] seg0,
                 output reg [7:0] seg1,
                 output reg [7:0] seg2,
-                output reg [7:0] seg3,
-                output reg [3:0] an
+                output reg [7:0] seg3
 );
 
+wire prelimSig; // start signal
 ///////////////////////////////////////////
 wire [7:0] prelimSeg0;
 wire [7:0] prelimSeg1;
@@ -85,6 +85,52 @@ PostPeriod pp(
 ///////////////////////////////////////////
 
 ///////////////////////////////////////////
+wire [7:0] userCount;
+UserCount uc(
+           .Clk100M(Clk100M),
+           .start(startGen),
+           .stop(stopGen),
+           .up(userUp), // This should be "blips" tied to the 100mhz clk
+           .down(userDown),
+           .count(userCount));
+///////////////////////////////////////////
+
+///////////////////////////////////////////
+wire [4:0] difference;
+Score s(
+          .Clk100M(Clk100M),
+          .start(startGen),
+          .stop(stopCount),
+          .userCount(userCount),
+          .magicSymbolCount(magicSymbolCount),
+          .difference(difference));
+///////////////////////////////////////////
+
+///////////////////////////////////////////
+wire incLevel, lose;
+Judge j(
+          .Clk100M(Clk100M),
+          .levelComplete(levelComplete),
+          .difference(difference),
+          .incLevel(incLevel),
+          .lose(lose));
+
+///////////////////////////////////////////
+
+///////////////////////////////////////////
+wire newLevel;
+wire [3:0] curLevel;
+wire [31:0] symGenMax;
+LevelContol lc(
+          .Clk100M(Clk100M),
+          .incLevel(incLevel),
+          .prelimSig(prelimSig),
+          .newLevel(newLevel),
+          .curLevel(curLevel),
+          .symGenMax(symGenMax));
+///////////////////////////////////////////
+
+///////////////////////////////////////////
 wire pre, game, answer, post;
 CurPeriod cp(
           .Clk100M(Clk100M),
@@ -102,6 +148,7 @@ CurPeriod cp(
 DisplayCntrl dc(
                 .Clk100M(Clk100M),
                 .ClkDisp(ClkDisp),
+                .lose(lose),
                 .pre(pre),
                 .game(game),
                 .answer(answer),
@@ -125,8 +172,6 @@ DisplayCntrl dc(
                 .segOut0(seg0),
                 .segOut1(seg1),
                 .segOut2(seg2),
-                .segOut3(seg3),
-                .anOut(an)
-                );
+                .segOut3(seg3));
 ///////////////////////////////////////////
 endmodule
