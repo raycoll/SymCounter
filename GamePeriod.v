@@ -2,9 +2,11 @@ module GamePeriod(
           input Clk100M,
           input Clk1Hz,
           input gameSig,
+          input [31:0] symGenMax,
           output startGen,
           output stopGen,
           output answerSig,
+          output reg [7:0] numSpecial,
           output reg [7:0] gameSeg0,
           output reg [7:0] gameSeg1,
           output reg [7:0] gameSeg2,
@@ -13,7 +15,20 @@ module GamePeriod(
 
 // Current game time in seconds
 integer gameTime;
+reg runTiming;
 reg periodFinished; 
+
+// symbol generation module
+wire generated, special;
+wire [7:0] generatedSym;
+SymGen sg(
+      .Clk100M(Clk100M),
+      .symGenMax(symGenMax),
+      .genSym(runTiming),
+      .generated(generated),
+      .special(special),
+      .generatedSym(generatedSym)
+);
 
 initial begin
   gameTime = 0;
@@ -21,17 +36,27 @@ initial begin
   answerSig = 0;
   startGen = 0;
   stopGen = 0;
-  gameSeg0 = 8'b11111111;
-  gameSeg1 = 8'b11111111;
-  gameSeg2 = 8'b11111111;
-  gameSeg3 = 8'b11111111;
+  numSpecial = 0;
+  gameSeg0 = 8'b00000001;
+  gameSeg1 = 8'b00000001;
+  gameSeg2 = 8'b00000001;
+  gameSeg3 = 8'b00000001;
 end
 
+always @(posedge generated) begin
+  if (special) begin
+    numSpecial <= numSpecial + 1;
+  end
 
-
+  gameSeg3 <= gameSeg2;
+  gameSeg2 <= gameSeg1;
+  gameSeg1 <= gameSeg0;
+  gameSeg0 <= generatedSym;
+end
 
 always @(posedge Clk100M) begin
   if (gameSig) begin
+    numSpecial <= 0;
     runTiming <= 1;
     startGen <= 1;    
   end
@@ -47,6 +72,7 @@ always @(posedge Clk100M) begin
   else begin
     stopGen <= 0;
   end
+
 end
 
 always @(posedge Clk1Hz) begin
@@ -63,7 +89,5 @@ always @(posedge Clk1Hz) begin
     periodFinished <= 0;
   end
 end
-
-
 
 endmodule
