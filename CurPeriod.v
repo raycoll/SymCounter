@@ -1,0 +1,17 @@
+///////////////////////////////////
+// Outputs a signal to 
+///////////////////////////////////
+module CurPeriod cp(
+          input Clk100M,
+          input prelimSig,
+          input gameSig,
+          input answerSig,
+          input postSig,
+          output reg pre,
+          output reg game,
+          output reg answer,
+          output reg post
+);
+
+
+endmodule

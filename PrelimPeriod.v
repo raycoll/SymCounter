@@ -9,36 +9,41 @@ module PrelimPeriod(
 );
 
 integer periodTime;
-reg periodEnabled;
 wire doneCounting;
+reg startCountDown;
+
 initial begin
   periodTime = 0;
   periodEnabled = 0;
+  startCountDown = 0;
+  gameSig = 0;
   prelimSeg1 = 8'b11111111;
   prelimSeg2 = 8'b11111111;
   prelimSeg3 = 8'b11111111;
   prelimSeg0 = 8'b11111111;
 end
 
-CountDownTimer t(.Clk1Hz(Clk1Hz),
-                 .start(),
-                 .done(),
+CountDownTimer t(.Clk100M(Clk100M),
+                 .Clk1Hz(Clk1Hz),
+                 .start(startCountDown),
+                 .doneCounting(doneCounting),
                  .seg(prelimSeg0));
 
 always @(posedge Clk100M) begin
+  // set the startCountDown signal when we receive the start prelim period signal
   if (prelimSig) begin
-    periodEnabled <= 1;
-    periodTime <= 0;
+    startCountDown <= 1;
   end 
+  else begin
+    startCountDown <= 0;
+  end
+  // After countdown timer completes, send the start game period signal
   if (doneCounting) begin
-    
+    gameSig <= 1;
+  end
+  else begin
+    gameSig <= 0;
   end
 end
 
-always @(posedge Clk1Hz) begin
-  if (periodEnabled) begin
-    
-
-
-  end
-end
+endmodule
