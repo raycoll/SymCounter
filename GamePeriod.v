@@ -43,17 +43,6 @@ initial begin
   gameSeg3 = 8'b00000001;
 end
 
-always @(posedge generated) begin
-  if (special) begin
-    numSpecial <= numSpecial + 1;
-  end
-
-  gameSeg3 <= gameSeg2;
-  gameSeg2 <= gameSeg1;
-  gameSeg1 <= gameSeg0;
-  gameSeg0 <= generatedSym;
-end
-
 always @(posedge Clk100M) begin
   if (gameSig) begin
     numSpecial <= 0;
@@ -75,6 +64,18 @@ always @(posedge Clk100M) begin
     answerPeriod <= 0;
   end
 
+  // move over the digits if we generated a symbol
+  if (generated) begin
+    // increment the special count if we generated a special symbol
+    if (special) begin
+      numSpecial <= numSpecial + 1;
+    end
+
+    gameSeg3 <= gameSeg2;
+    gameSeg2 <= gameSeg1;
+    gameSeg1 <= gameSeg0;
+    gameSeg0 <= generatedSym;
+  end
 end
 
 always @(posedge Clk1Hz) begin
