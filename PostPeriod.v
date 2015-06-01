@@ -1,6 +1,7 @@
 module PostPeriod(
+          input Clk100M,
           input Clk1Hz,
-          input postSIg,
+          input postSig,
           output levelComplete,
           output reg [7:0] postSeg0,
           output reg [7:0] postSeg1,
