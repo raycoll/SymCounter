@@ -34,14 +34,17 @@ wire [7:0] gameSeg0;
 wire [7:0] gameSeg1;
 wire [7:0] gameSeg2;
 wire [7:0] gameSeg3;
+wire [7:0] numSpecial;
 wire startGen, stopGen, answerSig;
 GamePeriod gp(
           .Clk100M(Clk100M),
           .Clk1Hz(Clk1Hz),
+          .symGenMax(symGenMax),
           .gameSig(gameSig),
           .startGen(startGen),
           .stopGen(stopGen),
           .answerSig(answerSig),
+          .numSpecial(numSpecial),
           .gameSeg0(gameSeg0),
           .gameSeg1(gameSeg1),
           .gameSeg2(gameSeg2),
@@ -147,7 +150,6 @@ CurPeriod cp(
 ///////////////////////////////////////////
 DisplayCntrl dc(
                 .Clk100M(Clk100M),
-                .ClkDisp(ClkDisp),
                 .lose(lose),
                 .pre(pre),
                 .game(game),
