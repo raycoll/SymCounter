@@ -39,23 +39,8 @@ module Game(
   .douta(douta) // output [0 : 0] douta
 );
 
-wire up, down, reset, resetB;
-wire Clk1Hz;
-wire levelChng, levelChngB;
-wire [4:0] level;
-wire [7:0] generatedSymbol;
-wire prelimPeriod, gamePeriod, answerPeriod, postPeriod;
-wire prelimPeriodB, gamePeriodB, answerPeriodB, postPeriodB;
-wire ClkGen, ClkDisp;
-//wire [3:0] randomNum;
-wire [6:0] userCount;
-wire [6:0] gameCount;
-wire [6:0] countDifference; // aka SCORE
-wire [3:0] countDownTime;
-wire loss;
-wire specialCount;
-
 // Creates signals from fpga button inputs
+wire up, down, reset;
 BtnInput b(.clk(clk), 
                 .btnU(btnU), 
                 .btnD(btnD), 
@@ -64,95 +49,37 @@ BtnInput b(.clk(clk),
                 .down(down), 
                 .reset(reset));
 
-// Truncates signals to only be "1" during the next rising edge of clk 
-ClkBlip cb(.clk(Clk100M),
-                .levelChng(levelChng),
-                .answerPeriod(answerPeriod),
-                .prelimPeriod(prelimPeriod),
-                .postPeriod(postPeriod),
-                .reset(reset),
-                .answerPeriodB(answerPeriodB),
-                .prelimPeriodB(prelimPeriodB),
-                .postPeriodB(postPeriodB),
-                .resetB(resetB),
-                levelChngB(levelChngB));
-
-// Generates clock signals from base 100Mhz clock
-Clock c(.Clk100M(Clk100M), 
-            .reset(reset), 
-            .levelChng(levelChng), 
-            .prelimPeriod(prelimPeriod), 
-            .gamePeriod(gamePeriod), 
-            .answerPeriod(answerPeriod), 
-            .postPeriod(postPeriod), 
-            .level(level), 
-            .ClkSymGen(ClkSymGen), 
-            .ClkDisp(ClkDisp), 
-            .Clk1Hz(Clk1Hz));
+// Clock generation module
+wire Clk1Hz, ClkDisp;
+Clock c(.Clk100Mhz(Clk100Mhz),
+            .Clk1Hz(.Clk1Hz),
+            .ClkDisp(.ClkDisp));
 
 
-UserSymCount u(.up(up), 
-                         .down(down), 
-                         .reset(reset), 
-                         .userCount(userCount));
+// Main game play module
+wire [7:0] seg0;
+wire [7:0] seg1;
+wire [7:0] seg2;
+wire [7:0] seg3;
+GamePlay gp( .Clk100Mhz(Clk100Mhz),
+                      .Clk1Hz(Clk1Hz),
+                      .ClkDisp(ClkDisp),
+                      .userUp(up),
+                      .userDown(down),
+                      .reset(0),
+                      .seg0(seg0),
+                      .seg1(seg1),
+                      .seg2(seg2),
+                      .seg3(seg3));
 
-// Controls movement across levels
-LevelControl lc(.Clk1Hz(Clk1Hz),
-                       .reset(reset), 
-                       .level(level), 
-                       .levelChng(levelChng), 
-                       .answerPeriod(answerPeriod), 
-                       .prelimPeriod(prelimPeriod), 
-                       .countDownTime(countDownTime),
-                       .gamePeriod(gamePeriod), 
-                       .postPeriod(postPeriod), 
-                       .loss(loss));
 
-// Generates symbols
-Symbol s(/*.randomNum(randomNum),*/ 
-               .ClkSymGen(ClkSymGen), 
-               .generatedSymbol(generatedSymbol),
-               .specialCount(specialCount));
-
-PrelimP pre(.Clk1Hz(Clk1Hz),
-                  .prelimPeriodB(),
-                  .gamePeriod(gamePeriod));
-
-GameP dur(.Clk1Hz(Clk1Hz),
-                  .gamePeriodB(gamePeriodB),
-                  .answerPeriod(answerPeriod));
-
-AnswerP ans(.Clk1Hz(Clk1Hz),
-                    .answerPeriodB(answerPeriodB),
-                    .postPeriod(postPeriod));
-
-PostP post();
-
-// Sets the 7 seg display based on the current game state
-Display d(.Clk1Hz(Clk1Hz), 
-               .ClkGen(ClkGen), 
-               .ClkDisp(ClkDisp), 
-               .prelimPeriod(prelimPeriod), 
-               .gamePeriod(gamePeriod), 
-               .answerPeriod(answerPeriod), 
-               .postPeriod(postPeriod),
-               .lose(lose), 
-               .userCount(userCount), 
-               .gameCount(0), 
-               .countDifference(countDifference), 
-               .countDownTime(countDownTime), 
-               .level(level), 
-               .generatedSymbol(generatedSymbol), 
-               .seg(seg), 
-               .an(an));
-
-// Generate desired output
-Display d(.ClkDisp(ClkDisp),
-               .seg0_in(),
-               .seg1_in(),
-               .seg2_in(),
-               .seg3_in(),
-               .seg(seg),
-               .an(an));
+// general 7 segment display module
+Display d( .ClkDisp(.ClkDisp),
+                .seg0(seg0),
+                .seg1(seg1),
+                .seg2(seg2),
+                .seg3(seg3),
+                .segOut(seg),
+                .anOut(an));
 
 endmodule

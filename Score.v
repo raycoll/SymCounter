@@ -1,22 +1,28 @@
 module Score(
-    input Clk100M,
-    input  [6:0] userSymCount,
-    input [6:0] actualSymCount,
-    input reset,
-    output reg [6:0] symCountDiff // 7 bits just cause
-    );
+          input start,
+          input stop,
+          input [7:0] userCount,
+          input [7:0] magicSymbolCount,
+          output [4:0] difference
+);
+
+reg counting;
 
 initial begin
-  integer signedDifference = 0;
+  difference = 0;
+  counting = 0;
 end
 
-always @(posedge Clk100M) begin
-  signedDifference = userSymCount - actualSymCount;
-  if (signedDifference < 0) begin
-    symCountDiff = -signedDifference;
+always @(posedge Clk100Mhz) begin
+  if (stop) begin
+    counting <= 0;
   end
-  else begin
-    symCountDiff = signedDifference;
+  if (start) begin
+    difference <= 0;
+    counting <= 1;
+  end
+  if (counting) begin
+    difference <= magicSymbolCount - userCount;
   end
 end
 
