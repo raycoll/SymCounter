@@ -21,7 +21,8 @@ wire gameSig;
 PrelimPeriod prelim(
           .Clk100M(Clk100M),
           .Clk1Hz(Clk1Hz),
-          .prelimSig(),
+          .prelimSig(prelimSig),
+          .curLevel(curLevel),
           .gameSig(gameSig),
           .prelimSeg0(prelimSeg0),
           .prelimSeg1(prelimSeg1),
