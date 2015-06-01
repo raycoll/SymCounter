@@ -68,9 +68,11 @@ always @(posedge Clk100M) begin
   if (periodFinished && runTiming == 1) begin
     runTiming <= 0;
     stopGen <= 1;
+    answerPeriod <= 1;
   end
   else begin
     stopGen <= 0;
+    answerPeriod <= 0;
   end
 
 end
