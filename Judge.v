@@ -18,8 +18,8 @@ always @(posedge Clk100M) begin
       incLevel <= 0;
     end
     else begin // user passed the level
-      //incLevel <= 1; // TODO: enable this for actual level progression 
-      //lose <= 0;
+      incLevel <= 1; 
+      lose <= 0;
     end
   end
   incLevel <= 0;

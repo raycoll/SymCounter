@@ -136,11 +136,12 @@ Judge j(
 ///////////////////////////////////////////
 
 ///////////////////////////////////////////
-
+wire victory;
 LevelControl lc(
           .Clk100M(Clk100M),
           .incLevel(incLevel),
           .newLevel(newLevel),
+          .victory(victory),
           .curLevel(curLevel),
           .symGenMax(symGenMax));
 ///////////////////////////////////////////
@@ -163,6 +164,7 @@ CurPeriod cp(
 DisplayCntrl dc(
                 .Clk100M(Clk100M),
                 .lose(lose),
+                .victory(victory),
                 .pre(pre),
                 .game(game),
                 .answer(answer),

@@ -2,6 +2,7 @@
 module DisplayCntrl(
                 input Clk100M,
                 input lose,
+                input victory,
                 input pre,
                 input game,
                 input answer,
@@ -59,6 +60,12 @@ always @(posedge Clk100M) begin
     segOut1 <= 8'b11000000; // O
     segOut2 <= 8'b10010010; // S 
     segOut3 <= 8'b10000110; // E
+  end
+  else if (victory) begin
+    segOut0 <= 8'b10010001; // Y
+    segOut1 <= 8'b10001000; // A
+    segOut2 <= 8'b10010001; // Y
+    segOut3 <= 8'b11111111; // 
   end
   else if (pre) begin
     segOut0 <= prelimSeg0;
