@@ -46,10 +46,10 @@ end
 
 always @(posedge Clk100M) begin
   if (answerSig && runTiming == 0) begin
-    answerSeg0 = 8'b11111111;
-    answerSeg1 = 8'b11111111;
-    answerSeg2 = 8'b11111111;
-    answerSeg3 = 8'b11111111;
+    answerSeg0 <= 8'b11111111;
+    answerSeg1 <= 8'b11111111;
+    answerSeg2 <= 8'b11111111;
+    answerSeg3 <= 8'b11111111;
     runTiming <= 1;    
   end
   // send the stop generation signal after the period time is up
