@@ -31,7 +31,7 @@ reg [3:0] count;
 initial begin
   special = 0;
   //count = 0;
-  count=3'b000;
+  count=4'b0000;
   generated = 0;
   symGenCount = 0;
   generatedSym = 8'b11111111;

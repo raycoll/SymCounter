@@ -22,7 +22,7 @@ always @(posedge Clk100M) begin
     Clk1Hz <= 0;
     counter1Hz <= counter1Hz + 1;
   end
-  if (counterDisp == 5000000 - 1) begin
+  if (counterDisp == 500000 - 1) begin
     counterDisp <= 0;
     ClkDisp <= 1;
   end 

@@ -5,10 +5,10 @@ module GamePlay(
                 input userUp,
                 input userDown,
                 input reset,
-                output reg [7:0] seg0,
-                output reg [7:0] seg1,
-                output reg [7:0] seg2,
-                output reg [7:0] seg3
+                output [7:0] seg0,
+                output [7:0] seg1,
+                output [7:0] seg2,
+                output [7:0] seg3
 );
 
 ///////////////////////////////////////////
@@ -27,6 +27,7 @@ wire [7:0] prelimSeg1;
 wire [7:0] prelimSeg2;
 wire [7:0] prelimSeg3;
 wire gameSig;
+wire [3:0] curLevel;
 PrelimPeriod prelim(
           .Clk100M(Clk100M),
           .Clk1Hz(Clk1Hz),
@@ -68,7 +69,8 @@ wire [7:0] answerSeg0;
 wire [7:0] answerSeg1;
 wire [7:0] answerSeg2;
 wire [7:0] answerSeg3;
-wire postSig, stopCount; 
+wire postSig, stopCount;
+wire [7:0] userCount; 
 AnswerPeriod ap(
           .Clk100M(Clk100M),
           .Clk1Hz(Clk1Hz),
@@ -101,7 +103,7 @@ PostPeriod pp(
 ///////////////////////////////////////////
 
 ///////////////////////////////////////////
-wire [7:0] userCount;
+
 UserCount uc(
            .Clk100M(Clk100M),
            .start(startGen),
@@ -112,7 +114,7 @@ UserCount uc(
 ///////////////////////////////////////////
 
 ///////////////////////////////////////////
-wire [4:0] difference;
+wire [7:0] difference;
 Score s(
           .Clk100M(Clk100M),
           .start(startGen),
@@ -134,7 +136,7 @@ Judge j(
 ///////////////////////////////////////////
 
 ///////////////////////////////////////////
-wire [3:0] curLevel;
+
 LevelControl lc(
           .Clk100M(Clk100M),
           .incLevel(incLevel),

@@ -19,7 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module Game(
-  input Clk100Mhz,
+  input Clk100M,
   input btnS, //reset
   input btnU, //up
   input btnD, //down
@@ -39,16 +39,6 @@ module Game(
   .addra(addra), // input [1 : 0] addra
   .douta(douta) // output [0 : 0] douta
 );*/
-
-// Creates signals from fpga button inputs
-wire up, down, reset;
-BtnInput b(.clk(clk), 
-                .btnU(btnU), 
-                .btnD(btnD), 
-                .btnS(btnS), 
-                .up(up), 
-                .down(down), 
-                .reset(reset));
                
 /*RandomNum rn(
   .clk(clk),
@@ -59,15 +49,24 @@ BtnInput b(.clk(clk),
                
 // Clock generation module
 wire Clk1Hz, ClkDisp;
-Clock c(.Clk100M(Clk100Mhz),
+Clock c(.Clk100M(Clk100M),
             .Clk1Hz(Clk1Hz),
             .ClkDisp(ClkDisp));
-
+            
+// Creates signals from fpga button inputs
+wire up, down, reset;
+BtnInput b(.clk(Clk1Hz), 
+                .btnU(btnU), 
+                .btnD(btnD), 
+                .btnS(btnS), 
+                .up(up), 
+                .down(down), 
+                .reset(reset));
 
 // Blips the user buttons according to the 100Mhz clk
 wire upB, downB;
 BtnBlip bb(
-        .Clk100M(Clk100Mhz),
+        .Clk100M(Clk100M),
         .up(up),
         .down(down),
         .upB(upB),
@@ -78,7 +77,7 @@ wire [7:0] seg0;
 wire [7:0] seg1;
 wire [7:0] seg2;
 wire [7:0] seg3;
-GamePlay gp( .Clk100M(Clk100Mhz),
+GamePlay gp( .Clk100M(Clk100M),
                       .Clk1Hz(Clk1Hz),
                       .ClkDisp(ClkDisp),
                       .userUp(upB),
@@ -89,5 +88,14 @@ GamePlay gp( .Clk100M(Clk100Mhz),
                       .seg2(seg2),
                       .seg3(seg3));
 
+Display disp(
+       .ClkDisp(ClkDisp),
+        .seg0(seg0),
+        .seg1(seg1),
+        .seg2(seg2),
+        .seg3(seg3),
+        .segOut(seg),
+        .anOut(an)
+);
 
 endmodule

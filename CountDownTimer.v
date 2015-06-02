@@ -42,8 +42,7 @@ end
 always @(posedge Clk100M) begin
   // start signal arrives, begin counting
   if (start && counting == 0) begin
-    seg0 <= 8'b11111111;
-    seg1 <= 8'b11111111;
+
     counting <= 1;
   end
   // Done counting, send the signal
@@ -60,17 +59,19 @@ always @(posedge Clk1Hz) begin
   if (counting && curCount == 6) begin // display level
     seg0 <= 8'b11000111; // L
     seg1 <= intToSeg(curLevel); // levelnum
-    curCount <= curCount - 1; //TODO VERIFY THIS FIX
+    curCount <= curCount - 1;
   end
   else if (counting && curCount > 0) begin // normal countdown
     seg0 <= intToSeg(curCount);
-    seg0 <= 8'b11111111;
+    seg1 <= 8'b11111111;
     curCount <= curCount - 1;
     finished <= 0;
   end
   else if (counting && curCount == 0) begin
     finished <= 1;
     curCount <= 6;
+    seg0 <= 8'b11111111;
+    seg1 <= 8'b11111111;
   end
   else begin
     finished <= 0;
