@@ -1,4 +1,5 @@
 module PrelimPeriod(
+          input Clk100M,
           input Clk1Hz,
           input prelimSig,
           input [3:0] curLevel,
@@ -30,7 +31,8 @@ CountDownTimer t(.Clk100M(Clk100M),
                  .curLevel(curLevel),
                  .start(startCountDown),
                  .doneCounting(doneCounting),
-                 .seg(prelimSeg0));
+                 .seg0(prelimSeg0),
+                 .seg1(prelimSeg1));
 
 always @(posedge Clk100M) begin
   // set the startCountDown signal when we receive the start prelim period signal

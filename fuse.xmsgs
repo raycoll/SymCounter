@@ -5,40 +5,28 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompiler" num="1591" delta="unknown" >"intToSeg.v" Line 1: Root scope declaration is not allowed in verilog 95/2K mode
+<msg type="warning" file="HDLCompiler" num="35" delta="unknown" >"C:/Users/152/SymCounter/GamePlay.v" Line 127: &lt;<arg fmt="%s" index="1">curLevel</arg>&gt; is already implicitly declared earlier.
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="267" delta="unknown" >"C:/Users/152/SymCounter/Game.v" Line 62: Cannot find port <arg fmt="%s" index="1">Clk100Mhz</arg> on this module
+<msg type="warning" file="HDLCompiler" num="329" delta="unknown" >"C:/Users/152/SymCounter/GamePlay.v" Line 175: Target &lt;<arg fmt="%s" index="1">seg0</arg>&gt; of concurrent assignment or output port connection should be a net type.
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="604" delta="unknown" >"C:/Users/152/SymCounter/Clock.v" Line 28: Module instantiation should have an instance name
+<msg type="warning" file="HDLCompiler" num="329" delta="unknown" >"C:/Users/152/SymCounter/GamePlay.v" Line 176: Target &lt;<arg fmt="%s" index="1">seg1</arg>&gt; of concurrent assignment or output port connection should be a net type.
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="604" delta="unknown" >"C:/Users/152/SymCounter/Game.v" Line 69: Module instantiation should have an instance name
+<msg type="warning" file="HDLCompiler" num="329" delta="unknown" >"C:/Users/152/SymCounter/GamePlay.v" Line 177: Target &lt;<arg fmt="%s" index="1">seg2</arg>&gt; of concurrent assignment or output port connection should be a net type.
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="267" delta="unknown" >"C:/Users/152/SymCounter/Game.v" Line 81: Cannot find port <arg fmt="%s" index="1">Clk100Mhz</arg> on this module
-</msg>
-
-<msg type="warning" file="HDLCompiler" num="267" delta="unknown" >"C:/Users/152/SymCounter/GamePlay.v" Line 21: Cannot find port <arg fmt="%s" index="1">Clk100M</arg> on this module
-</msg>
-
-<msg type="warning" file="HDLCompiler" num="267" delta="unknown" >"C:/Users/152/SymCounter/GamePlay.v" Line 148: Cannot find port <arg fmt="%s" index="1">segOut3</arg> on this module
-</msg>
-
-<msg type="error" file="HDLCompiler" num="69" delta="unknown" >"C:/Users/152/SymCounter/CountDownTimer.v" Line 38: &lt;<arg fmt="%s" index="1">IntToSeg</arg>&gt; is not declared.
+<msg type="warning" file="HDLCompiler" num="329" delta="unknown" >"C:/Users/152/SymCounter/GamePlay.v" Line 178: Target &lt;<arg fmt="%s" index="1">seg3</arg>&gt; of concurrent assignment or output port connection should be a net type.
 </msg>
 
 <msg type="warning" file="HDLCompiler" num="189" delta="unknown" >"C:/Users/152/SymCounter/Game.v" Line 86: Size mismatch in connection of port &lt;<arg fmt="%s" index="3">reset</arg>&gt;. Formal port size is <arg fmt="%d" index="2">1</arg>-bit while actual signal size is <arg fmt="%d" index="1">32</arg>-bit.
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="189" delta="unknown" >"C:/Users/152/SymCounter/GamePeriod.v" Line 26: Size mismatch in connection of port &lt;<arg fmt="%s" index="3">symGenMax</arg>&gt;. Formal port size is <arg fmt="%d" index="2">1</arg>-bit while actual signal size is <arg fmt="%d" index="1">32</arg>-bit.
+<msg type="warning" file="HDLCompiler" num="329" delta="unknown" >"C:/Users/152/SymCounter/PrelimPeriod.v" Line 34: Target &lt;<arg fmt="%s" index="1">prelimSeg0</arg>&gt; of concurrent assignment or output port connection should be a net type.
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="189" delta="unknown" >"C:/Users/152/SymCounter/GamePlay.v" Line 105: Size mismatch in connection of port &lt;<arg fmt="%s" index="3">magicSymbolCount</arg>&gt;. Formal port size is <arg fmt="%d" index="2">8</arg>-bit while actual signal size is <arg fmt="%d" index="1">1</arg>-bit.
-</msg>
-
-<msg type="error" file="Simulator" num="778" delta="unknown" >Static elaboration of top level Verilog design unit(s) in library <arg fmt="%s" index="1">work</arg> failed
+<msg type="warning" file="HDLCompiler" num="329" delta="unknown" >"C:/Users/152/SymCounter/PrelimPeriod.v" Line 35: Target &lt;<arg fmt="%s" index="1">prelimSeg1</arg>&gt; of concurrent assignment or output port connection should be a net type.
 </msg>
 
 </messages>

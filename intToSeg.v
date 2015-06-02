@@ -1,3 +1,5 @@
+module intToSegMod();
+
 function [7:0] intToSeg;
 input [3:0] number;
   case(number)
@@ -14,3 +16,4 @@ input [3:0] number;
     default: intToSeg=8'b11111111;
   endcase
 endfunction
+endmodule

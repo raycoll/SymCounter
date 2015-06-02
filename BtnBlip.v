@@ -22,8 +22,8 @@ module BtnBlip(
         input Clk100M,
         input up,
         input down,
-        output upB,
-        output downB
+        output reg upB,
+        output reg downB
 );
 
 reg curUp, curDown;

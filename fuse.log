@@ -1,11 +1,10 @@
-Running: C:\Xilinx\14.6\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o C:/Users/152/SymCounter/tb_isim_beh.exe -prj C:/Users/152/SymCounter/tb_beh.prj work.tb work.glbl 
+Running: C:\Xilinx\14.6\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o C:/Users/152/SymCounter/tb_isim_beh.exe -prj C:/Users/152/SymCounter/tb_beh.prj tb work.glbl 
 ISim P.68d (signature 0x7708f090)
 Number of CPUs detected in this system: 8
 Turning on mult-threading, number of parallel sub-compilation jobs: 16 
 Determining compilation order of HDL files
 Analyzing Verilog file "C:/Users/152/SymCounter/SymGen.v" into library work
 Analyzing Verilog file "C:/Users/152/SymCounter/CountDownTimer.v" into library work
-WARNING:HDLCompiler:1591 - "intToSeg.v" Line 1: Root scope declaration is not allowed in verilog 95/2K mode
 Analyzing Verilog file "C:/Users/152/SymCounter/UserCount.v" into library work
 Analyzing Verilog file "C:/Users/152/SymCounter/Score.v" into library work
 Analyzing Verilog file "C:/Users/152/SymCounter/PrelimPeriod.v" into library work
@@ -15,9 +14,9 @@ Analyzing Verilog file "C:/Users/152/SymCounter/Judge.v" into library work
 Analyzing Verilog file "C:/Users/152/SymCounter/GamePeriod.v" into library work
 Analyzing Verilog file "C:/Users/152/SymCounter/DisplayCntrl.v" into library work
 Analyzing Verilog file "C:/Users/152/SymCounter/CurPeriod.v" into library work
-Analyzing Verilog file "C:/Users/152/SymCounter/ClkBlip.v" into library work
 Analyzing Verilog file "C:/Users/152/SymCounter/AnswerPeriod.v" into library work
 Analyzing Verilog file "C:/Users/152/SymCounter/GamePlay.v" into library work
+WARNING:HDLCompiler:35 - "C:/Users/152/SymCounter/GamePlay.v" Line 127: <curLevel> is already implicitly declared earlier.
 Analyzing Verilog file "C:/Users/152/SymCounter/Clock.v" into library work
 Analyzing Verilog file "C:/Users/152/SymCounter/BtnInput.v" into library work
 Analyzing Verilog file "C:/Users/152/SymCounter/BtnBlip.v" into library work
@@ -25,14 +24,35 @@ Analyzing Verilog file "C:/Users/152/SymCounter/Game.v" into library work
 Analyzing Verilog file "C:/Users/152/SymCounter/tb.v" into library work
 Analyzing Verilog file "C:/Xilinx/14.6/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
-WARNING:HDLCompiler:267 - "C:/Users/152/SymCounter/Game.v" Line 62: Cannot find port Clk100Mhz on this module
-WARNING:HDLCompiler:604 - "C:/Users/152/SymCounter/Clock.v" Line 28: Module instantiation should have an instance name
-WARNING:HDLCompiler:604 - "C:/Users/152/SymCounter/Game.v" Line 69: Module instantiation should have an instance name
-WARNING:HDLCompiler:267 - "C:/Users/152/SymCounter/Game.v" Line 81: Cannot find port Clk100Mhz on this module
-WARNING:HDLCompiler:267 - "C:/Users/152/SymCounter/GamePlay.v" Line 21: Cannot find port Clk100M on this module
-WARNING:HDLCompiler:267 - "C:/Users/152/SymCounter/GamePlay.v" Line 148: Cannot find port segOut3 on this module
-ERROR:HDLCompiler:69 - "C:/Users/152/SymCounter/CountDownTimer.v" Line 38: <IntToSeg> is not declared.
+WARNING:HDLCompiler:329 - "C:/Users/152/SymCounter/GamePlay.v" Line 175: Target <seg0> of concurrent assignment or output port connection should be a net type.
+WARNING:HDLCompiler:329 - "C:/Users/152/SymCounter/GamePlay.v" Line 176: Target <seg1> of concurrent assignment or output port connection should be a net type.
+WARNING:HDLCompiler:329 - "C:/Users/152/SymCounter/GamePlay.v" Line 177: Target <seg2> of concurrent assignment or output port connection should be a net type.
+WARNING:HDLCompiler:329 - "C:/Users/152/SymCounter/GamePlay.v" Line 178: Target <seg3> of concurrent assignment or output port connection should be a net type.
 WARNING:HDLCompiler:189 - "C:/Users/152/SymCounter/Game.v" Line 86: Size mismatch in connection of port <reset>. Formal port size is 1-bit while actual signal size is 32-bit.
-WARNING:HDLCompiler:189 - "C:/Users/152/SymCounter/GamePeriod.v" Line 26: Size mismatch in connection of port <symGenMax>. Formal port size is 1-bit while actual signal size is 32-bit.
-WARNING:HDLCompiler:189 - "C:/Users/152/SymCounter/GamePlay.v" Line 105: Size mismatch in connection of port <magicSymbolCount>. Formal port size is 8-bit while actual signal size is 1-bit.
-ERROR:Simulator:778 - Static elaboration of top level Verilog design unit(s) in library work failed
+WARNING:HDLCompiler:329 - "C:/Users/152/SymCounter/PrelimPeriod.v" Line 34: Target <prelimSeg0> of concurrent assignment or output port connection should be a net type.
+WARNING:HDLCompiler:329 - "C:/Users/152/SymCounter/PrelimPeriod.v" Line 35: Target <prelimSeg1> of concurrent assignment or output port connection should be a net type.
+Completed static elaboration
+Compiling module BtnInput
+Compiling module Clock
+Compiling module BtnBlip
+Compiling module CountDownTimer
+Compiling module PrelimPeriod
+Compiling module SymGen
+Compiling module GamePeriod
+Compiling module AnswerPeriod
+Compiling module PostPeriod
+Compiling module UserCount
+Compiling module Score
+Compiling module Judge
+Compiling module LevelControl
+Compiling module CurPeriod
+Compiling module DisplayCntrl
+Compiling module GamePlay
+Compiling module Game
+Compiling module tb
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Compiled 19 Verilog Units
+Built simulation executable C:/Users/152/SymCounter/tb_isim_beh.exe
+Fuse Memory Usage: 28712 KB
+Fuse CPU Usage: 623 ms

@@ -4,7 +4,7 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   15:19:17 06/01/2015
+// Create Date:   16:31:45 06/01/2015
 // Design Name:   Game
 // Module Name:   C:/Users/152/SymCounter/tb.v
 // Project Name:  lab4Stevia
@@ -25,7 +25,7 @@
 module tb;
 
 	// Inputs
-	reg Clk100M;
+	reg Clk100Mhz;
 	reg btnS;
 	reg btnU;
 	reg btnD;
@@ -36,7 +36,7 @@ module tb;
 
 	// Instantiate the Unit Under Test (UUT)
 	Game uut (
-		.Clk100M(Clk100M), 
+		.Clk100Mhz(Clk100Mhz), 
 		.btnS(btnS), 
 		.btnU(btnU), 
 		.btnD(btnD), 
@@ -46,7 +46,7 @@ module tb;
 
 	initial begin
 		// Initialize Inputs
-		Clk100M = 0;
+		Clk100Mhz = 0;
 		btnS = 0;
 		btnU = 0;
 		btnD = 0;

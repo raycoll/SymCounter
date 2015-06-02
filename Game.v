@@ -19,7 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module Game(
-  input Clk100M,
+  input Clk100Mhz,
   input btnS, //reset
   input btnU, //up
   input btnD, //down
@@ -59,14 +59,14 @@ BtnInput b(.clk(clk),
                
 // Clock generation module
 wire Clk1Hz, ClkDisp;
-Clock c(.Clk100Mhz(Clk100Mhz),
+Clock c(.Clk100M(Clk100Mhz),
             .Clk1Hz(Clk1Hz),
             .ClkDisp(ClkDisp));
 
 
 // Blips the user buttons according to the 100Mhz clk
 wire upB, downB;
-BtnBlip(
+BtnBlip bb(
         .Clk100M(Clk100Mhz),
         .up(up),
         .down(down),
@@ -78,7 +78,7 @@ wire [7:0] seg0;
 wire [7:0] seg1;
 wire [7:0] seg2;
 wire [7:0] seg3;
-GamePlay gp( .Clk100Mhz(Clk100Mhz),
+GamePlay gp( .Clk100M(Clk100Mhz),
                       .Clk1Hz(Clk1Hz),
                       .ClkDisp(ClkDisp),
                       .userUp(upB),
