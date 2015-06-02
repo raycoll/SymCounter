@@ -45,6 +45,10 @@ end
 
 always @(posedge Clk100M) begin
   if (postSig && runTiming == 0) begin
+    postSeg0 = 8'b11111111;
+    postSeg1 = 8'b11111111;
+    postSeg2 = 8'b11111111;
+    postSeg3 = 8'b11111111;
     runTiming <= 1;    
   end
   // send the stop generation signal after the period time is up

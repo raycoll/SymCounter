@@ -42,6 +42,8 @@ end
 always @(posedge Clk100M) begin
   // start signal arrives, begin counting
   if (start && counting == 0) begin
+    seg0 = 8'b11111111;
+    seg1 = 8'b11111111;
     counting <= 1;
   end
   // Done counting, send the signal

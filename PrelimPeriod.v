@@ -36,6 +36,8 @@ always @(posedge Clk100M) begin
   // set the startCountDown signal when we receive the start prelim period signal
   if (prelimSig) begin
     startCountDown <= 1;
+    prelimSeg2 = 8'b11111111;
+    prelimSeg3 = 8'b11111111;
   end 
   else begin
     startCountDown <= 0;
