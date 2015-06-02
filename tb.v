@@ -44,9 +44,11 @@ module tb;
 		.an(an)
 	);
 
+always Clk100Mhz= #5 ~Clk100Mhz; 
+
 	initial begin
 		// Initialize Inputs
-		Clk100Mhz = 0;
+		//Clk100Mhz = 0;
 		btnS = 0;
 		btnU = 0;
 		btnD = 0;
