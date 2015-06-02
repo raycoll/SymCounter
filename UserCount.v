@@ -19,6 +19,7 @@ always @(posedge Clk100M) begin
     counting <= 0;
   end
   if (start) begin
+    count <= 0;
     counting <= 1;
   end
   if (up && counting) begin

@@ -1,34 +1,41 @@
 `timescale 1ns / 1ps
-
 module BtnInput(
-   input clk,
-	 input btnU, // player count up
-   input btnD, // player count down
-   input btnS, // reset game
-   output reg up,
-   output reg down,
-   output reg reset
-    );
+    input clk, 
+    input up,  
+    input down,
+    output reg downB,
+    output reg upB 
+);
 
-	always @(posedge clk or posedge btnU) begin
-		if (btnU)
-			up <= 1;
-		else
-			up <= 0;
-	end
+reg up_sync_0;
+reg down_sync_0;
+always @(posedge clk) begin
+  up_sync_0 <= up;
+  down_sync_0 <= down;
+end 
+reg up_sync_1;
+reg down_sync_1;
+always @(posedge clk) begin
+  up_sync_1 <= up_sync_0;
+  down_sync_1 <= down_sync_0;
+end
 
-	always @(posedge clk or posedge btnD) begin
-		if (btnD)
-			down <= 1;
-		else
-			down <= 0;
-	end
-
-  always @(posedge clk or posedge btnS) begin
-    if (btnS)
-      reset <= 1;
-    else
-      reset <= 0;
+reg [15:0] up_cnt;
+reg [15:0] down_cnt;
+always @(posedge clk) begin
+  if(upB==up_sync_1)
+      up_cnt <= 0;
+  else
+  begin
+      up_cnt <= up_cnt + 1'b1;  
+      if(up_cnt == 16'hffff) upB <= ~upB;  
   end
-
+  if(downB==down_sync_1)
+      down_cnt <= 0;
+  else
+  begin
+      down_cnt <= down_cnt + 1'b1;  
+      if(down_cnt == 16'hffff) downB <= ~downB;  
+  end
+end
 endmodule
