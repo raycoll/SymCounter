@@ -36,6 +36,7 @@ wire [7:0] gameSeg2;
 wire [7:0] gameSeg3;
 wire [7:0] numSpecial;
 wire startGen, stopGen, answerSig;
+wire [31:0] symGenMax;
 GamePeriod gp(
           .Clk100M(Clk100M),
           .Clk1Hz(Clk1Hz),
@@ -105,7 +106,7 @@ Score s(
           .start(startGen),
           .stop(stopCount),
           .userCount(userCount),
-          .magicSymbolCount(magicSymbolCount),
+          .magicSymbolCount(numSpecial),
           .difference(difference));
 ///////////////////////////////////////////
 
@@ -123,7 +124,6 @@ Judge j(
 ///////////////////////////////////////////
 wire newLevel;
 wire [3:0] curLevel;
-wire [31:0] symGenMax;
 LevelControl lc(
           .Clk100M(Clk100M),
           .incLevel(incLevel),
