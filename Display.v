@@ -9,6 +9,7 @@ module Display(
         input wire [7:0] seg3,
         output reg [7:0] segOut,
         output reg [7:0] anOut
+        //input upB
 );
 
 reg [1:0] count;
@@ -20,6 +21,7 @@ initial begin
 end
 
 always @(posedge ClkDisp) begin
+
   if (count == 0) begin
     anOut <= 4'b0111;
     segOut <= seg0;
@@ -43,6 +45,7 @@ always @(posedge ClkDisp) begin
   else begin
     // do nothing
   end
+ 
 end
 
 endmodule

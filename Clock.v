@@ -3,14 +3,17 @@
 module Clock(
     input Clk100M,
     output reg ClkDisp,
-    output reg Clk1Hz
+    output reg Clk1Hz,
+    output reg ClkBtn
     );
 
 integer counter1Hz;
 integer counterDisp;
+integer counterBtn;
 initial begin
   counter1Hz = 0;
   counterDisp = 0;
+  counterBtn = 0;
 end
 
 always @(posedge Clk100M) begin
@@ -30,6 +33,14 @@ always @(posedge Clk100M) begin
     ClkDisp <= 0;
     counterDisp <= counterDisp + 1;
   end 
+  if (counterBtn == 150000 - 1) begin
+    counterBtn <= 0;
+    ClkBtn <= 1;
+  end
+  else begin
+    counterBtn <= counterBtn + 1;
+    ClkBtn <= 0;
+  end
 end
 
 endmodule

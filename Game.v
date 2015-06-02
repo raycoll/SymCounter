@@ -39,14 +39,20 @@ module Game(
   .addra(addra), // input [1 : 0] addra
   .douta(douta) // output [0 : 0] douta
 );*/
-
+wire Clk1Hz, ClkDisp, ClkBtn;
+Clock c(.Clk100M(Clk100M),
+            .Clk1Hz(Clk1Hz),
+            .ClkDisp(ClkDisp),
+            .ClkBtn(ClkBtn));
+         
 wire up, down, reset;
-wire upB, downB;
-BtnInput b(.clk(Clk100M),  
-                .up(up), 
-                .down(down), 
-                .upB(upB),
-                .downB(downB));
+BtnInput b(.clk(ClkBtn),  
+                .btnU(btnU), 
+                .btnD(btnD),
+                .btnS(btnS),
+                .up(up),
+                .down(down),
+                .reset(reset));
                
 /*RandomNum rn(
   .clk(clk),
@@ -56,18 +62,10 @@ BtnInput b(.clk(Clk100M),
 */
                
 // Clock generation module
-wire Clk1Hz, ClkDisp;
-Clock c(.Clk100M(Clk100M),
-            .Clk1Hz(Clk1Hz),
-            .ClkDisp(ClkDisp));
-/* wire upB, downB;
-BtnBlip bb(
-        .Clk100M(Clk100M),
-        .up(up),
-        .down(down),
-        .upB(upB),
-        .downB(downB)); */
 
+wire upB, downB;
+BtnBlip bup(.Clk100M(Clk100M),.D(up),.blip(upB)); 
+BtnBlip bdown(.Clk100M(Clk100M),.D(down),.blip(downB)); 
 // Main game play module
 wire [7:0] seg0;
 wire [7:0] seg1;

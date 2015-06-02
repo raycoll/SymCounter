@@ -107,7 +107,7 @@ PostPeriod pp(
 UserCount uc(
            .Clk100M(Clk100M),
            .start(startGen),
-           .stop(stopGen),
+           .stop(stopCount),
            .up(userUp), // This should be "blips" tied to the 100mhz clk
            .down(userDown),
            .count(userCount));
@@ -167,6 +167,7 @@ DisplayCntrl dc(
                 .game(game),
                 .answer(answer),
                 .post(post),
+                //.userCount(userCount),
                 .prelimSeg0(prelimSeg0),
                 .prelimSeg1(prelimSeg1),
                 .prelimSeg2(prelimSeg2),
