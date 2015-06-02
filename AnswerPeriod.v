@@ -46,10 +46,10 @@ end
 
 always @(posedge Clk100M) begin
   if (answerSig && runTiming == 0) begin
-    answerSeg0 = 8'b11111111;
-    answerSeg1 = 8'b11111111;
-    answerSeg2 = 8'b11111111;
-    answerSeg3 = 8'b11111111;
+    answerSeg0 <= 8'b11111111;
+    answerSeg1 <= 8'b11111111;
+    answerSeg2 <= 8'b11111111;
+    answerSeg3 <= 8'b11111111;
     runTiming <= 1;    
   end
   // send the stop generation signal after the period time is up
@@ -63,7 +63,7 @@ always @(posedge Clk100M) begin
     postSig <= 0;
 
     // display user count
-    answerSeg0 <= intToseg(userCount / 10);
+    answerSeg0 <= intToSeg(userCount / 10);
     answerSeg1 <= intToSeg(userCount % 10);
   end
 end

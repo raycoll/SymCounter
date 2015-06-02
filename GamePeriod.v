@@ -37,14 +37,18 @@ initial begin
   startGen = 0;
   stopGen = 0;
   numSpecial = 0;
-  gameSeg0 = 8'b00000001;
-  gameSeg1 = 8'b00000001;
-  gameSeg2 = 8'b00000001;
-  gameSeg3 = 8'b00000001;
+  gameSeg0 = 8'b11111111;
+  gameSeg1 = 8'b11111111;
+  gameSeg2 = 8'b11111111;
+  gameSeg3 = 8'b11111111;
 end
 
 always @(posedge Clk100M) begin
   if (gameSig) begin
+    gameSeg0 <= 8'b11111111;
+    gameSeg1 <= 8'b11111111;
+    gameSeg2 <= 8'b11111111;
+    gameSeg3 <= 8'b11111111;
     numSpecial <= 0;
     runTiming <= 1;
     startGen <= 1;    
