@@ -17,7 +17,7 @@ module GamePeriod(
 integer gameTime;
 reg runTiming;
 reg periodFinished; 
-
+ 
 // symbol generation module
 wire generated, special;
 wire [7:0] generatedSym;
@@ -25,6 +25,7 @@ SymGen sg(
       .Clk100M(Clk100M),
       .symGenMax(symGenMax),
       .genSym(runTiming),
+       //.randomNum(randomNum),
       .generated(generated),
       .special(special),
       .generatedSym(generatedSym)
