@@ -48,11 +48,12 @@ module postp_tb;
 		.postSeg3(postSeg3)
 	);
 
+reg start;
 	initial begin
 		// Initialize Inputs
-		Clk100M = 0;
-		Clk1Hz = 0;
+		Clk100M = 1;
 		postSig = 0;
+		start=1;
 
 		// Wait 100 ns for global reset to finish
 		#100;
@@ -60,6 +61,32 @@ module postp_tb;
 		// Add stimulus here
 
 	end
+			always Clk100M = #5 ~Clk100M;  // 100 MHz
+		
+	
+integer counter1Hz;
+initial begin
+  counter1Hz = 0;
+end
+
+always @(posedge Clk100M) begin
+	if(start) begin
+		postSig<=1;
+		start<=0;
+	end
+	else begin
+		postSig<=0;
+	end
+  if (counter1Hz == 100 - 1) begin
+    counter1Hz <= 0;
+    Clk1Hz <= 1;
+  end
+  else begin
+    Clk1Hz <= 0;
+    counter1Hz <= counter1Hz + 1;
+  end
+end
+      
       
 endmodule
 

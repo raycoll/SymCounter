@@ -24,23 +24,38 @@
   <files xmlns="http://www.xilinx.com/XMLSchema">
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="Clock_isim_beh.exe"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="CountDownTimer_isim_beh.exe"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="PrelimPeriod_isim_beh.exe"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="SymGen_isim_beh.exe"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="answer_tb_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="answerp_tb_beh.prj"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="answerp_tb_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="answerp_tb_isim_beh.wdb"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="cdt_tb_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="cdt_tb_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="gameper_tb_isim_beh.exe"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
-    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="tb_beh.prj"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_LOG" xil_pn:name="isim.log"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="postp_tb_beh.prj"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="postp_tb_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="postp_tb_isim_beh.wdb"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="postper_tb_beh.prj"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="postper_tb_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="postper_tb_isim_beh.wdb"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="prelim_tb_isim_beh.exe"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="symgen_tb_isim_beh.exe"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="tb_isim_beh.exe"/>
-    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="tb_isim_beh.wdb"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="tb_stx_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_INI" xil_pn:name="xilinxsim.ini"/>
   </files>
 
   <transforms xmlns="http://www.xilinx.com/XMLSchema">
-    <transform xil_pn:end_ts="1433203402" xil_pn:name="TRAN_copyInitialToAbstractSimulation" xil_pn:start_ts="1433203402">
+    <transform xil_pn:end_ts="1433236151" xil_pn:name="TRAN_copyInitialToAbstractSimulation" xil_pn:start_ts="1433236151">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1433203402" xil_pn:in_ck="3495505445799457614" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1433203402">
+    <transform xil_pn:end_ts="1433236151" xil_pn:in_ck="-8704418642989805502" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1433236151">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="AnswerPeriod.v"/>
@@ -59,26 +74,33 @@
       <outfile xil_pn:name="PrelimPeriod.v"/>
       <outfile xil_pn:name="RandomNum.v"/>
       <outfile xil_pn:name="Score.v"/>
+      <outfile xil_pn:name="Starter.v"/>
       <outfile xil_pn:name="SymGen.v"/>
       <outfile xil_pn:name="Symbol.v"/>
       <outfile xil_pn:name="UserCount.v"/>
+      <outfile xil_pn:name="answer_tb.v"/>
+      <outfile xil_pn:name="cdt_tb.v"/>
+      <outfile xil_pn:name="gameper_tb.v"/>
+      <outfile xil_pn:name="postper_tb.v"/>
+      <outfile xil_pn:name="prelim_tb.v"/>
+      <outfile xil_pn:name="symgen_tb.v"/>
       <outfile xil_pn:name="tb.v"/>
     </transform>
-    <transform xil_pn:end_ts="1433203402" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-7128511773193751507" xil_pn:start_ts="1433203402">
+    <transform xil_pn:end_ts="1433236151" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-1053539644805460167" xil_pn:start_ts="1433236151">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1433203402" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-2964187670512171541" xil_pn:start_ts="1433203402">
+    <transform xil_pn:end_ts="1433236151" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-8857649021832939273" xil_pn:start_ts="1433236151">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1433203402" xil_pn:in_ck="2640051865844877484" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="1277599618290142174" xil_pn:start_ts="1433203402">
+    <transform xil_pn:end_ts="1433236151" xil_pn:in_ck="2640051865844877484" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="1277599618290142174" xil_pn:start_ts="1433236151">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="ipcore_dir/Rand.ngc"/>
       <outfile xil_pn:name="ipcore_dir/Rand.v"/>
     </transform>
-    <transform xil_pn:end_ts="1433203402" xil_pn:in_ck="789783055273668294" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1433203402">
+    <transform xil_pn:end_ts="1433236151" xil_pn:in_ck="790894549410474426" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1433236151">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="AnswerPeriod.v"/>
@@ -97,26 +119,37 @@
       <outfile xil_pn:name="PrelimPeriod.v"/>
       <outfile xil_pn:name="RandomNum.v"/>
       <outfile xil_pn:name="Score.v"/>
+      <outfile xil_pn:name="Starter.v"/>
       <outfile xil_pn:name="SymGen.v"/>
       <outfile xil_pn:name="Symbol.v"/>
       <outfile xil_pn:name="UserCount.v"/>
+      <outfile xil_pn:name="answer_tb.v"/>
+      <outfile xil_pn:name="cdt_tb.v"/>
+      <outfile xil_pn:name="gameper_tb.v"/>
       <outfile xil_pn:name="ipcore_dir/Rand.v"/>
+      <outfile xil_pn:name="postper_tb.v"/>
+      <outfile xil_pn:name="prelim_tb.v"/>
+      <outfile xil_pn:name="symgen_tb.v"/>
       <outfile xil_pn:name="tb.v"/>
     </transform>
-    <transform xil_pn:end_ts="1433203405" xil_pn:in_ck="789783055273668294" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-6159587342810039271" xil_pn:start_ts="1433203402">
+    <transform xil_pn:end_ts="1433236152" xil_pn:in_ck="790894549410474426" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-4860725192724570959" xil_pn:start_ts="1433236151">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="fuse.log"/>
       <outfile xil_pn:name="isim"/>
-      <outfile xil_pn:name="tb_beh.prj"/>
-      <outfile xil_pn:name="tb_isim_beh.exe"/>
+      <outfile xil_pn:name="isim.log"/>
+      <outfile xil_pn:name="postper_tb_beh.prj"/>
+      <outfile xil_pn:name="postper_tb_isim_beh.exe"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1433203406" xil_pn:in_ck="-4999149443789013229" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="1853537267270789276" xil_pn:start_ts="1433203405">
+    <transform xil_pn:end_ts="1433236152" xil_pn:in_ck="2086241750791857310" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="4879345101582178756" xil_pn:start_ts="1433236152">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="isim.cmd"/>
-      <outfile xil_pn:name="tb_isim_beh.wdb"/>
+      <outfile xil_pn:name="isim.log"/>
+      <outfile xil_pn:name="postper_tb_isim_beh.wdb"/>
     </transform>
     <transform xil_pn:name="TRAN_SubProjectAbstractToPreProxy">
       <status xil_pn:value="SuccessfullyRun"/>
