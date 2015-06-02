@@ -60,7 +60,7 @@ always @(posedge Clk1Hz) begin
     seg1 <= intToSeg(curLevel); // levelnum
     curCount <= curCount - 1; //TODO VERIFY THIS FIX
   end
-  if (counting && curCount > 0) begin // normal countdown
+  else if (counting && curCount > 0) begin // normal countdown
     seg0 <= intToSeg(curCount);
     seg0 <= 8'b11111111;
     curCount <= curCount - 1;
