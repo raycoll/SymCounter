@@ -1,7 +1,6 @@
 module LevelControl(
 		      input Clk100M,
 	        input incLevel,
-          output prelimSig,
           output reg newLevel,
           output reg [3:0] curLevel,
           output reg [31:0] symGenMax // used to increase symbol generation speed as level increases

@@ -40,7 +40,7 @@ end
 
 always @(posedge Clk100M) begin
   // generate a new symbol after counting symGenMax times 
-  if (genSym && (symGenCount == symGenMax - 1)) begin
+  if (genSym && (symGenCount >= symGenMax - 1)) begin
     if (count == 9) begin
       count <= 0;
     end
