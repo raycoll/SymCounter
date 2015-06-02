@@ -4,8 +4,8 @@ module PrelimPeriod(
           input prelimSig,
           input [3:0] curLevel,
           output reg gameSig,
-          output reg [7:0] prelimSeg0,
-          output reg [7:0] prelimSeg1,
+          output [7:0] prelimSeg0,
+          output [7:0] prelimSeg1,
           output reg [7:0] prelimSeg2,
           output reg [7:0] prelimSeg3
 );
@@ -20,10 +20,8 @@ initial begin
   //periodEnabled = 0;
   startCountDown = 0;
   gameSig = 0;
-  prelimSeg1 = 8'b11111111;
   prelimSeg2 = 8'b11111111;
   prelimSeg3 = 8'b11111111;
-  prelimSeg0 = 8'b11111111;
 end
 
 CountDownTimer t(.Clk100M(Clk100M),

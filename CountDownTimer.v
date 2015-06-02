@@ -6,8 +6,9 @@ module CountDownTimer(
               input [3:0] curLevel,
               output reg doneCounting,
               output reg [7:0] seg0,
-              output reg  [7:0] seg1
+              output reg [7:0] seg1
 );
+
 function [7:0] intToSeg;
 input [3:0] number;
   case(number)
@@ -30,6 +31,8 @@ reg counting;
 reg finished;
 
 initial begin
+  seg0 = 8'b11111111;
+  seg1 = 8'b11111111;
   doneCounting = 0;
   counting = 0;
   curCount = 6;
@@ -59,6 +62,7 @@ always @(posedge Clk1Hz) begin
   end
   if (counting && curCount > 0) begin // normal countdown
     seg0 <= intToSeg(curCount);
+    seg0 <= 8'b11111111;
     curCount <= curCount - 1;
     finished <= 0;
   end
