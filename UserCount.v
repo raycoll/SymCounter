@@ -18,14 +18,18 @@ always @(posedge Clk100M) begin
   if (stop) begin
     counting <= 0;
   end
-  if (start) begin
+  else if (start) begin
+    count <= 0;
     counting <= 1;
   end
-  if (up && counting) begin
+  else if (up && counting) begin
     count <= count + 1;
   end
-  if (down && counting) begin
-    count <= count + 1;
+  else if (down && counting) begin
+    count <= count - 1;
+  end
+  else begin
+    //n none
   end
 end
 
