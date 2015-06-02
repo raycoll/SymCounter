@@ -2,6 +2,7 @@ module PostPeriod(
           input Clk100M,
           input Clk1Hz,
           input postSig,
+          input [7:0] magicSymbolCount,
           output reg levelComplete,
           output reg [7:0] postSeg0,
           output reg [7:0] postSeg1,
@@ -18,10 +19,10 @@ initial begin
   postTime = 0;
   periodFinished = 0;
   //stopCount = 0;
-  postSeg0 = 8'b00000000;
+  postSeg0 = 8'b11111111;
   postSeg1 = 8'b11111111;
   postSeg2 = 8'b11111111;
-  postSeg3 = 8'b00000000;
+  postSeg3 = 8'b11111111;
 end
 
 always @(posedge Clk100M) begin
@@ -36,6 +37,10 @@ always @(posedge Clk100M) begin
   else begin
     levelComplete <= 0;
   end
+
+  // display the actual number of desired symbols generated
+  postSeg0 <= intToSeg(magicSymbolCount / 10);
+  postSeg1 <= intToSeg(magicSymbolCount % 10);
 end
 
 always @(posedge Clk1Hz) begin

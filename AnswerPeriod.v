@@ -2,6 +2,7 @@ module AnswerPeriod(
           input Clk100M,
           input Clk1Hz,
           input answerSig,
+          input userCount,
           output reg postSig,
           output reg stopCount,
           output reg [7:0] answerSeg0,
@@ -22,8 +23,8 @@ initial begin
   stopCount = 0;
   answerSeg0 = 8'b00000000;
   answerSeg1 = 8'b00000000;
-  answerSeg2 = 8'b00000000;
-  answerSeg3 = 8'b00000000;
+  answerSeg2 = 8'b11111111;
+  answerSeg3 = 8'b11111111;
 end
 
 always @(posedge Clk100M) begin
@@ -39,6 +40,10 @@ always @(posedge Clk100M) begin
   else begin
     stopCount <= 0;
     postSig <= 0;
+
+    // display user count
+    answerSeg0 <= intToseg(userCount / 10);
+    answerSeg1 <= intToSeg(userCount % 10);
   end
 end
 
