@@ -11,7 +11,16 @@ module GamePlay(
                 output reg [7:0] seg3
 );
 
+///////////////////////////////////////////
 wire prelimSig; // start signal
+wire newLevel;
+Starter st(
+          .Clk100M(Clk100M),
+          .Clk1Hz(Clk1Hz),
+          .newLevel(newLevel),
+          .prelimSig(prelimSig));
+///////////////////////////////////////////
+
 ///////////////////////////////////////////
 wire [7:0] prelimSeg0;
 wire [7:0] prelimSeg1;
@@ -64,6 +73,7 @@ AnswerPeriod ap(
           .Clk100M(Clk100M),
           .Clk1Hz(Clk1Hz),
           .answerSig(answerSig),
+          .userCount(userCount),
           .postSig(postSig),
           .stopCount(stopCount),
           .answerSeg0(answerSeg0),
@@ -82,6 +92,7 @@ PostPeriod pp(
           .Clk100M(Clk100M),
           .Clk1Hz(Clk1Hz),
           .postSig(postSig),
+          .magicSymbolCount(numSpecial),
           .levelComplete(levelComplete),
           .postSeg0(postSeg0),
           .postSeg1(postSeg1),
@@ -123,12 +134,10 @@ Judge j(
 ///////////////////////////////////////////
 
 ///////////////////////////////////////////
-wire newLevel;
 wire [3:0] curLevel;
 LevelControl lc(
           .Clk100M(Clk100M),
           .incLevel(incLevel),
-          .prelimSig(prelimSig),
           .newLevel(newLevel),
           .curLevel(curLevel),
           .symGenMax(symGenMax));
