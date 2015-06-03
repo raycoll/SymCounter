@@ -17,15 +17,14 @@ module GamePeriod(
 integer gameTime;
 reg runTiming;
 reg periodFinished; 
- 
+
 // symbol generation module
-wire generated, special;
+wire generated, special, generateSymbols;
 wire [7:0] generatedSym;
 SymGen sg(
       .Clk100M(Clk100M),
       .symGenMax(symGenMax),
-      .genSym(runTiming),
-       //.randomNum(randomNum),
+      .genSym(generateSymbols),
       .generated(generated),
       .special(special),
       .generatedSym(generatedSym)
@@ -37,6 +36,7 @@ initial begin
   answerSig = 0;
   startGen = 0;
   stopGen = 0;
+  generateSymbols = 0;
   numSpecial = 0;
   gameSeg0 = 8'b11111111;
   gameSeg1 = 8'b11111111;
@@ -85,15 +85,21 @@ end
 
 always @(posedge Clk1Hz) begin
   // stop the period after 15 seconds
-  if (runTiming && !periodFinished && gameTime < 15) begin
+  if (runTiming && !periodFinished && gameTime < 14) begin
+    generateSymbols <= 1;
     gameTime <= gameTime + 1;
     periodFinished <= 0;
   end
+  else if (runTiming && gameTime == 14) begin
+    generateSymbols <= 0; // stop generating 1 second before moving to answer period
+  end
   else if (runTiming && gameTime == 15) begin
+    generateSymbols <= 0;
     periodFinished <= 1;
     gameTime <= 0;
   end
   else begin
+    generateSymbols <= 0;
     periodFinished <= 0;
   end
 end
