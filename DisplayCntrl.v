@@ -92,10 +92,10 @@ always @(posedge Clk100M) begin
     segOut3 <= postSeg3;
   end
   else begin
-    segOut0 <= 8'b00000000;
-    segOut1 <= 8'b00000000;
-    segOut2 <= 8'b00000000;
-    segOut3 <= 8'b00000000;
+    segOut0 <= 8'b10001001;
+    segOut1 <= 8'b11111001;
+    segOut2 <= 8'b11111111;
+    segOut3 <= 8'b11111111;
   end
   
 end

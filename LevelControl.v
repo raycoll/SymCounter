@@ -11,12 +11,12 @@ initial begin
   victory = 0;
   curLevel = 1;
   symGenMax = 100000000; // equates to 1 second for clock division
-  newLevel = 1; 
+  newLevel = 0; 
 end
 
 always @(posedge Clk100M) begin
 	if (incLevel) begin
-    if (curLevel == 9) begin // max level is 3 
+    if (curLevel == 1) begin // max level is 3 
       victory <= 1;
     end 
     else begin

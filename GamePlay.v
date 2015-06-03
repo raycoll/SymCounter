@@ -4,7 +4,7 @@ module GamePlay(
                 input ClkDisp,
                 input userUp,
                 input userDown,
-                input userStart,
+                //input userStart,
                 input start,
                 input [31:0] counter,
                 output [7:0] seg0,
@@ -19,6 +19,7 @@ wire newLevel;
 Starter st(
           .Clk100M(Clk100M),
           .Clk1Hz(Clk1Hz),
+          .start(start),
           .newLevel(newLevel),
           .prelimSig(prelimSig));
 ///////////////////////////////////////////

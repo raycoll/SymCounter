@@ -2,6 +2,7 @@ module SymGen(
         input Clk100M,
         input [31:0] symGenMax, // used to control generation speed
         //input [127:0] randomNum,
+        input [31:0] counter,
         input genSym, // are we in game period?
         output reg generated, // was symbol generated
         output reg special, // was generated symbol the desired one
@@ -12,7 +13,7 @@ wire [12:0] randomNum;
 wire rst;
 RandomNum rn(
   .clk(Clk100M),
-  //.reset(rst),
+  .counter(counter),
   .randomNum(randomNum)
 );
 
@@ -43,12 +44,8 @@ endfunction
  
 integer symGenCount;
 wire [7:0] randSym;
-//integer count;
-reg [3:0] count;
 initial begin
   special = 0;
-  //count = 0;
-  count=4'b0000;
   generated = 0;
   symGenCount = 0;
   generatedSym = 8'b11111111;

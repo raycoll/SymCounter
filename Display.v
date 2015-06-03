@@ -7,6 +7,7 @@ module Display(
         input wire [7:0] seg1,
         input wire [7:0] seg2,
         input wire [7:0] seg3,
+        input start,
         output reg [7:0] segOut,
         output reg [7:0] anOut
         //input upB
@@ -21,6 +22,10 @@ initial begin
 end
 
 always @(posedge ClkDisp) begin
+/*if(start) begin
+  anOut <= 4'b0111;
+  segOut <= 8'b11110000;
+end*/
 
   if (count == 0) begin
     anOut <= 4'b0111;

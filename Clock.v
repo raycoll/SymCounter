@@ -4,12 +4,13 @@ module Clock(
     input Clk100M,
     output reg ClkDisp,
     output reg Clk1Hz,
-    output reg ClkBtn
+    output reg ClkBtn,
+    output reg [31:0] counterBtn
     );
 
 integer counter1Hz;
 integer counterDisp;
-integer counterBtn;
+//integer counterBtn;
 initial begin
   counter1Hz = 0;
   counterDisp = 0;
