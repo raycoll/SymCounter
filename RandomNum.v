@@ -37,37 +37,14 @@ end
   if(reset) begin
     random<=13'hF;
     //$display("reset. random=%d",random);
-    //count <=0;
     reset<=0;
   end
   else begin
-    //random <= random_next;
-    //count<=count_next;
     random<={random[11:0], feedback};
   end
   $display("random %d", random);
  end
- /*
- always @(*) begin
-  random_next= random;
-  count_next=count;
- 
-  random_next={random[11:0], feedback};
-  count_next=count+1;
-  if(count==13) begin
-  //$display("count max");
-    count=0;
-    random_done=random;
-    //$display("random_done %d", random_done);
-  end
-  
- // $display("count %d", count);
- end
- 
- assign randomNum = random_done;
- */
  assign randomNum = random;
-
 
 endmodule
 

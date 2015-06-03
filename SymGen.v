@@ -58,17 +58,14 @@ end
 always @(posedge Clk100M) begin
   // generate a new symbol after counting symGenMax times 
   if (genSym && (symGenCount >= symGenMax - 1)) begin
-   /* if (count == 9) begin
-      count <= 0;
-    end
-    else begin
-      count <= count+1;
-    end
-*/
     generated <= 1;
-    special <= 1;
+    //special <= 1;
     symGenCount <= 0;
     generatedSym <= newSym(randomNum);
+    if((~generatedSym) & (8'b00000001)) 
+      special<=1;
+    else
+      special<=0;
   end
   else begin
     generated <= 0;
