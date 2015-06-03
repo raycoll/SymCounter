@@ -3,6 +3,7 @@ module GamePeriod(
           input Clk1Hz,
           input gameSig,
           input [31:0] symGenMax,
+          input [31:0] counter,
           output reg [0:0] startGen,
           output reg [0:0] stopGen,
           output reg [0:0] answerSig,
@@ -25,7 +26,7 @@ SymGen sg(
       .Clk100M(Clk100M),
       .symGenMax(symGenMax),
       .genSym(runTiming),
-       //.randomNum(randomNum),
+      .counter(counter),
       .generated(generated),
       .special(special),
       .generatedSym(generatedSym)
