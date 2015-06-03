@@ -17,6 +17,7 @@ wire newLevel;
 Starter st(
           .Clk100M(Clk100M),
           .Clk1Hz(Clk1Hz),
+          .start(start),
           .newLevel(newLevel),
           .prelimSig(prelimSig));
 ///////////////////////////////////////////
