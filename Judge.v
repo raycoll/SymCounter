@@ -22,7 +22,9 @@ always @(posedge Clk100M) begin
       lose <= 0;
     end
   end
-  incLevel <= 0;
+  else begin
+    incLevel <= 0;
+  end
   //lose <= 0;
 end
 
