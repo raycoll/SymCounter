@@ -16,12 +16,12 @@ end
 
 always @(posedge Clk100M) begin
 	if (incLevel) begin
-    if (curLevel == 3) begin // max level is 3 
+    if (curLevel == 9) begin // max level is 3 
       victory <= 1;
     end 
     else begin
       curLevel <= curLevel + 1;
-      symGenMax <= symGenMax - 50000*curLevel; // increase generation speed as level goes up
+      symGenMax <= symGenMax - 75000*curLevel; // increase generation speed as level goes up
       newLevel <= 1;
     end
   end

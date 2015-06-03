@@ -13,7 +13,7 @@ end
 
 always @(posedge Clk100M) begin
   if (levelComplete) begin
-    if (difference > 2) begin
+    if (difference) begin
       lose <= 1;
       incLevel <= 0;
     end

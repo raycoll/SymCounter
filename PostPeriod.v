@@ -63,6 +63,7 @@ always @(posedge Clk100M) begin
   // display the actual number of desired symbols generated
   postSeg0 <= intToSeg(magicSymbolCount / 10);
   postSeg1 <= intToSeg(magicSymbolCount % 10);
+  postSeg3 <= 8'b10001000;
 end
 
 always @(posedge Clk1Hz) begin

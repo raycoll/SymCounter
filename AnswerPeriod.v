@@ -65,6 +65,7 @@ always @(posedge Clk100M) begin
     // display user count
     answerSeg0 <= intToSeg(userCount / 10);
     answerSeg1 <= intToSeg(userCount % 10);
+    answerSeg3 <= 8'b11000001;
   end
 end
 

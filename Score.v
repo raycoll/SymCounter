@@ -23,7 +23,10 @@ always @(posedge Clk100M) begin
     counting <= 1;
   end
   if (counting) begin
-    difference <= magicSymbolCount - userCount;
+    if(magicSymbolCount == userCount)
+      difference <=0;
+    else
+      difference <=1;
   end
 end
 
